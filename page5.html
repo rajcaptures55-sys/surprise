@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🎂</title>
+
+  <style>
+    :root {
+      --bg: #F8F4EC;
+      --soft-pink: #FF8FB7;
+      --hot-pink: #E83C91;
+      --dark: #43334C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 390px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      color: var(--dark);
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--dark);
+      opacity: 0.85;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+
+    .cake {
+      font-size: 4.5rem;
+      cursor: pointer;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .tap-hint {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      opacity: 0.6;
+      color: var(--dark);
+    }
+
+    /* CONFETTI */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      font-size: 1.2rem;
+      animation: fall linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* FINAL REVEAL */
+    .final-reveal {
+      margin-top: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1.2s ease;
+    }
+
+    .final-reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* PHOTO — NOW 4:3 */
+    .photo-frame {
+      width: 75%;
+      max-width: 260px;
+      aspect-ratio: 4 / 3;
+      margin: 0 auto 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* CUT TEXT */
+    .from-text {
+      position: relative;
+      display: inline-block;
+      font-size: 0.9rem;
+      color: var(--dark);
+      opacity: 0.25;
+      margin-bottom: 6px;
+    }
+
+    .from-text::after {
+      content: "";
+      position: absolute;
+      left: -6%;
+      right: -6%;
+      top: 50%;
+      height: 1px;
+      background: var(--dark);
+      opacity: 0.55;
+    }
+
+    .signature {
+      font-size: 0.95rem;
+      color: var(--dark);
+      opacity: 0.75;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Happy Birthday 🎉</h1>
+    <p>May today be as special as you are 💖</p>
+
+    <div class="cake" id="cake">🎂</div>
+    <div class="tap-hint">Tap the cake</div>
+
+    <!-- FINAL CONTENT -->
+    <div class="final-reveal" id="finalReveal">
+      <div class="photo-frame">
+        <img src="images/final-photo.jpg" alt="Memory" />
+      </div>
+
+      
+      <div class="signature"> ~your Good Friend</div>
+    </div>
+  </div>
+
+  <script>
+    const cake = document.getElementById("cake");
+    const finalReveal = document.getElementById("finalReveal");
+    let celebrated = false;
+
+    cake.addEventListener("click", () => {
+      if (celebrated) return;
+      celebrated = true;
+
+      cake.textContent = "🕯️🎂🕯️";
+      launchConfetti();
+
+      setTimeout(() => {
+        finalReveal.classList.add("show");
+      }, 1800);
+    });
+
+    function launchConfetti() {
+      const emojis = ["🎉", "✨", "💖", "🎊"];
+      for (let i = 0; i < 40; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+  </script>
+</body>
+</html>

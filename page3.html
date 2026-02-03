@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happiest Birthday 🎉</title>
+
+  <style>
+    :root {
+      --bg: #F8F4EC;
+      --soft-pink: #FF8FB7;
+      --hot-pink: #E83C91;
+      --dark: #43334C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 390px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .cake {
+      font-size: 3.5rem;
+      margin-bottom: 18px;
+      animation: float 2s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* IMAGE FRAME */
+    .photo-frame {
+      width: 50%;
+      max-width: 200px;
+      aspect-ratio: 9 / 16;
+      margin: 0 auto 20px;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 3px solid var(--soft-pink);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      color: var(--dark);
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .wish {
+      color: var(--dark);
+      font-size: 1.05rem;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeIn 1.2s forwards;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .tap-hint {
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--dark);
+      opacity: 0.6;
+    }
+
+    .continue-btn {
+      margin-top: 20px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      border: none;
+      background: var(--hot-pink);
+      color: white;
+      font-size: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="cake">🎂</div>
+
+    <!-- IMAGE -->
+    <div class="photo-frame">
+      <img src="images/birthday-person.jpg" alt="Birthday Person" />
+    </div>
+
+    <h1>Happiest Birthday 💖</h1>
+
+    <p class="wish">
+      Wishing you a day filled with smiles,<br />
+      laughter, and everything you deserve ✨
+    </p>
+
+    <div class="tap-hint">Tap the cake 🎂</div>
+
+    <button class="continue-btn" id="nextBtn">
+      One more thing 💌
+    </button>
+  </div>
+
+  <script>
+    const cake = document.querySelector(".cake");
+    const nextBtn = document.getElementById("nextBtn");
+
+    cake.addEventListener("click", () => {
+      cake.textContent = "🎉";
+      nextBtn.style.display = "inline-block";
+    });
+
+    nextBtn.addEventListener("click", () => {
+      window.location.href = "page4.html";
+    });
+  </script>
+</body>
+</html>

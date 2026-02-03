@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Something Special 🎉</title>
+
+  <style>
+    :root {
+      --bg: #F8F4EC;
+      --soft-pink: #FF8FB7;
+      --hot-pink: #E83C91;
+      --dark: #43334C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 390px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .title {
+      color: var(--dark);
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--dark);
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 40px;
+    }
+
+    .heart {
+      font-size: 3rem;
+      animation: pulse 1.5s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .surprise-btn {
+      background: var(--hot-pink);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 16px 28px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(232, 60, 145, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .surprise-btn:active {
+      transform: scale(0.95);
+    }
+
+    .hint {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: var(--dark);
+      opacity: 0.6;
+    }
+
+    /* Mobile-only focus */
+    @media (min-width: 768px) {
+      body {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="heart">🎂</div>
+
+    <h1 class="title">
+      Hey you ! 👀
+    </h1>
+
+    <p class="subtitle">
+      Aaj konacha tari khaas divas ahe.<br />
+      Are you ready for a little surprise?
+    </p>
+
+    <button class="surprise-btn" id="startBtn">
+      Tap to Begin 🎁
+    </button>
+
+    <p class="hint">
+      (Don’t worry… it gets better 😉)
+    </p>
+  </div>
+
+  <script>
+    const btn = document.getElementById("startBtn");
+
+    const texts = [
+      "Are you sure? 😏",
+      "Okay… tap again 💖",
+      "No turning back 👀",
+      "Last chance 😆"
+    ];
+
+    let index = 0;
+
+    btn.addEventListener("click", () => {
+      if (index < texts.length) {
+        btn.textContent = texts[index];
+        index++;
+      } else {
+        // Navigate to next page later
+        // window.location.href = "page2.html";
+        window.location.href = "page2.html";
+      }
+    });
+  </script>
+</body>
+</html>

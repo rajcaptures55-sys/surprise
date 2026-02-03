@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pick a Surprise 🎁</title>
+
+  <style>
+    :root {
+      --bg: #F8F4EC;
+      --soft-pink: #FF8FB7;
+      --hot-pink: #E83C91;
+      --dark: #43334C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 390px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--dark);
+      opacity: 0.8;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    .gifts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .gift {
+      background: var(--soft-pink);
+      border-radius: 20px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .gift:active {
+      transform: scale(0.92);
+    }
+
+    .shake {
+      animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+      75% { transform: translateX(-6px); }
+      100% { transform: translateX(0); }
+    }
+
+    .message {
+      margin-top: 24px;
+      font-size: 1rem;
+      color: var(--hot-pink);
+      min-height: 24px;
+    }
+
+    .success {
+      background: var(--hot-pink);
+      color: white;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 14px 26px;
+      border-radius: 30px;
+      border: none;
+      background: var(--hot-pink);
+      color: white;
+      font-size: 0.95rem;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Pick a Gift 🎁</h1>
+    <p>Only ONE hides something special…</p>
+
+    <div class="gifts">
+      <div class="gift">🎁</div>
+      <div class="gift">🎁</div>
+      <div class="gift correct">🎁</div>
+      <div class="gift">🎁</div>
+    </div>
+
+    <div class="message" id="msg"></div>
+
+    <button id="nextBtn">Continue 💖</button>
+  </div>
+
+  <script>
+    const gifts = document.querySelectorAll(".gift");
+    const msg = document.getElementById("msg");
+    const nextBtn = document.getElementById("nextBtn");
+
+    gifts.forEach(gift => {
+      gift.addEventListener("click", () => {
+        if (gift.classList.contains("correct")) {
+          gift.textContent = "💖";
+          gift.classList.add("success");
+          msg.textContent = "You picked the right one 🥹";
+          nextBtn.style.display = "inline-block";
+        } else {
+          gift.classList.add("shake");
+          msg.textContent = "Oops 😆 Try another one!";
+          setTimeout(() => gift.classList.remove("shake"), 400);
+        }
+      });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      // next page later
+      // window.location.href = "page3.html";
+      window.location.href = "page3.html";
+    });
+  </script>
+</body>
+</html>

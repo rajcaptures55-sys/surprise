@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You 💌</title>
+
+  <style>
+    :root {
+      --bg: #F8F4EC;
+      --soft-pink: #FF8FB7;
+      --hot-pink: #E83C91;
+      --dark: #43334C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* FIX */
+      position: relative;
+      overflow-y: auto; /* FIX */
+      background: var(--bg);
+      padding: 20px 0;
+    }
+
+    /* BACKGROUND IMAGE */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("images/paintings.jpeg") center / cover no-repeat;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 390px;
+      padding: 26px 22px 34px;
+      text-align: center;
+    }
+
+    .envelope {
+      font-size: 3rem;
+      margin-bottom: 14px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    h1 {
+      color: var(--dark);
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+    }
+
+    /* LETTER FIX */
+    .letter {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 22px;
+      padding: 22px 18px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+      text-align: left;
+      color: var(--dark);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      max-height: 55vh;        /* KEY FIX */
+      overflow-y: auto;        /* KEY FIX */
+      scroll-behavior: smooth;
+    }
+
+    /* Optional scrollbar styling */
+    .letter::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .letter::-webkit-scrollbar-thumb {
+      background: var(--soft-pink);
+      border-radius: 10px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      background: var(--hot-pink);
+      margin-left: 2px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .continue-btn {
+      margin-top: 26px;
+      padding: 14px 30px;
+      border-radius: 30px;
+      border: none;
+      background: var(--hot-pink);
+      color: white;
+      font-size: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="envelope">💌</div>
+    <h1>A Message Just for You</h1>
+
+    <div class="letter" id="letter">
+      <span id="text"></span><span class="cursor"></span>
+    </div>
+
+    <button class="continue-btn" id="nextBtn">
+      One last surprise 🎂
+    </button>
+  </div>
+
+  <script>
+    const message = `
+Many many HAPPY RETURNS OF THE DAY 🎉
+Yayyy, finally toh divas alach jyachi me waat pahat hoto aaj tuzha divas aahe. Mala mahit aahe bharpur messages yetil ani sagle tula wish kartil, mhanun tuzha jasti time nahi ghet… ha fakt ek chota sa message majhya kadhun.
+
+Today isn’t just about candles or wishes it’s about celebrating you.
+The way you smile, the way you care, and the quiet strength you carry without even realizing it.
+
+Tu khush rah, hi ekch wish aahe. Pray karto ki tula te sagla bhetava je tujhya manat aahe, tujhya mana-sarkhya goshti ghadawe. May all your dreams come true. You are truly an incredible person — never ever doubt your potential. Tu te sagla kru shakte jyacha tu vichar kartes, I believe in you. Just keep going, many more to come.
+
+Ani please overthink karu nakos ha page baghun i know tuzhya sathi me just ek friend ahe still hi website me banavali karan, tuzha birthday manapasun celebrate karaycha hota just like a festival and I don’t expect anything in return.
+
+Once again, Happy Birthday, my favourite friend 🤍
+`;
+
+    const textEl = document.getElementById("text");
+    const nextBtn = document.getElementById("nextBtn");
+    const letter = document.getElementById("letter");
+    let index = 0;
+
+    function typeText() {
+      if (index < message.length) {
+        textEl.textContent += message.charAt(index);
+        letter.scrollTop = letter.scrollHeight; // AUTO-SCROLL
+        index++;
+        setTimeout(typeText, 35);
+      } else {
+        nextBtn.style.display = "inline-block";
+      }
+    }
+
+    typeText();
+
+    nextBtn.addEventListener("click", () => {
+      window.location.href = "page5.html";
+    });
+  </script>
+</body>
+</html>
